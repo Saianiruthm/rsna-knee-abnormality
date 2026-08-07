@@ -1,0 +1,33 @@
+# Secrets — NEVER commit
+*.env
+.keys.env
+kaggle.json
+
+# Kaggle competition data — do NOT redistribute (regenerate via setup_data.py)
+train.csv
+train_series.csv
+test_series.csv
+test.csv
+sample_submission.csv
+reports/
+test_series/
+train_series/
+*.dcm
+
+# Intermediate / regenerable
+out/
+out_nv/
+out_gemini/
+out_llama33/
+out_gflash/
+out_gflashlite/
+shardA.txt
+shardB.txt
+gold_key.csv
+gold_sids.txt
+all_sids.txt
+
+# Python
+__pycache__/
+*.pyc
+.venv/
