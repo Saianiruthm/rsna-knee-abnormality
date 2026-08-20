@@ -54,6 +54,16 @@ resume, gold AUC all verified).
 The 58 gold studies are **held out of training** and used only for validation.
 Compare `effnet_b0` vs `dax_vits16` on gold macro-AUC to settle the backbone.
 
-## nb3_infer.py — TODO
-Internet OFF. Load weights + backbone (bundled datasets) → predict
-`/kaggle/input` test → `submission.csv`.
+## nb3_infer.py — inference / submission
+**Internet OFF.** Loads the nb2 checkpoint (it already holds the backbone
+weights — no pretrained download needed), preprocesses test DICOMs with the SAME
+logic as nb1, predicts, writes `/kaggle/working/submission.csv` in
+sample_submission format. Reuses nb1/nb2 as the single source of truth (add them
+as a utility so `import` works). Smoke-tested: checkpoint load, predict, and exact
+submission columns verified.
+
+**Run (submission notebook, internet OFF):**
+1. Add inputs: competition data, the **checkpoint** dataset (`best_<backbone>.pt`),
+   and the **code** (nb1/nb2 `.py`, e.g. as a utility dataset at `SRC_DIR`).
+2. `import os; os.environ["CKPT"]="/kaggle/input/rsna-knee-ckpt/best_effnet_b0.pt"`
+   then run `main()`. Submit the resulting `submission.csv`.

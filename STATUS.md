@@ -39,6 +39,10 @@ project can be resumed anywhere (clone repo → read `HANDOFF.md` + `STATUS.md` 
 - Cache dtype confirmed float16 (not uint8) to preserve dynamic range.
 
 ## Roadmap
-1. **Notebook #1 — preprocess/cache** (Kaggle) → private cache dataset. ← next
-2. **Notebook #2 — train** (Kaggle P100; Vultr if we scale) → checkpoints as dataset.
-3. **Notebook #3 — inference** (Kaggle, internet off) → `submission.csv`.
+1. **Notebook #1 — preprocess/cache** (`kaggle/nb1_preprocess.py`) ✅ drafted, smoke-tested on sample DICOMs. ← run on Kaggle next
+2. **Notebook #2 — train** (`kaggle/nb2_train.py`) ✅ drafted, smoke-tested (train loop, resume, gold AUC).
+3. **Notebook #3 — inference** (`kaggle/nb3_infer.py`) ✅ drafted, smoke-tested (load, predict, submission format).
+
+All three are authored + locally validated on synthetic/sample data. Remaining
+work is on Kaggle (needs `/kaggle/input`): run nb1 → publish cache dataset →
+run nb2 (compare effnet_b0 vs dax_vits16 on gold macro-AUC) → run nb3 → submit.
